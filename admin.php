@@ -53,6 +53,8 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="css/admin.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
   </head>
   <body>
     <div class="side-menu">
@@ -62,18 +64,18 @@
       </div>
 
       <div class="brand-name">
-        <h2>Ramiro</h2> 
+        <h2> <?php echo $_SESSION['name'] ?></h2> 
       </div>
 
       <div class="brand-surname">
-        <h2>Molina Zeballos</h2> 
+        <h2> <?php echo $_SESSION['surname'] ?> </h2> 
       </div>
 
       <div class="brand-bar"></div>
 
       <ul>
         <a href="admin.php"><li><img src="css/img/people.png" alt="" class="list-nav">&nbsp; <span>Usuarios</span></li></a>
-        <a href="#"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Proveedores</span></li></a>
+        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Proveedores</span></li></a>
       </ul>
     </div>
 

@@ -43,7 +43,8 @@ if(isset($_POST['username']) && isset($_POST['password'])){
   $row = $query->fetch(PDO::FETCH_NUM);
   //Se verifican los datos del usuario - Row inicia en la posición 0
   if($row == true){
-    $valueName = $row[1] + " " + $row[2];
+    $valueName = $row[1];
+    $valueSurname = $row[2];
     $valueCi = $row[3];
     $key = $row[11];
     $estado = $row[12];
@@ -52,6 +53,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
       $_SESSION['key'] = $key;
       $_SESSION['ci'] = $valueCi;
       $_SESSION['name'] = $valueName;
+      $_SESSION['surname'] = $valueSurname;
       //Se redirecciona al usuario
       switch($_SESSION['key']){
         case 1:

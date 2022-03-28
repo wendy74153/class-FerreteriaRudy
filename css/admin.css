@@ -169,7 +169,66 @@
     align-items: flex-start;
     flex-wrap: wrap;
   }
-  
+  .container .content .seccion .form-add{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 2em;
+    width: 400px;
+    margin: 10% auto;
+    overflow: hidden;
+    text-align: center;
+  }
+
+
+  .container .content .seccion .form-add input, .container .content .seccion .form-add select{
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.1);
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+  }
+
+  .container .content .seccion .form-ci input{
+    display:inline-block;
+    width: 30%;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+/*
+  .container .content .seccion form {
+    width: 200px;
+    height: 500px;
+    padding: 5px;
+    border: 20px;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+  }
+
+  .container .content .seccion .add-user, .container .content .seccion select{
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.1);
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+  }
+  */
   .content-table {
     border-collapse: collapse;
     margin: 5px 0;
@@ -218,4 +277,10 @@
     background: white;
     border-color: white;
     box-shadow: 0 3px 4px rgba(0,0,0,.3);
+  }
+
+  .btn-user{
+    width: 100%;
+    font-size: 18px;
+    letter-spacing: 2px;
   }

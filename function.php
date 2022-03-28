@@ -18,7 +18,13 @@ if(isset($_GET['userDelete'])){
 
 if(isset($_POST['add'])){
   $name = $_POST['newName'];
+  $surname = $_POST['newSurname'];
   $ci = $_POST['newCi'];
+  $ciext = $_POST['newCiext'];
+  $ciexp = $_POST['newCiexp'];
+  $birthdate = $_POST['newBirthdate'];
+  $telephone = $_POST['newTelephone'];
+  $email = $_POST['newEmail'];
   $user = $_POST['newUser'];
   $password = $_POST['newPassword'];
   $access = $_POST['newAccess'];
@@ -41,8 +47,8 @@ if(isset($_POST['add'])){
 
   }
   else {
-    $sql = "INSERT INTO users (user_user, password_user, name_user, ci_user, access_user, state_user)
-            VALUES ('".$user."', '".$password."', '".$name."', '".$ci."','".$access."', 'habilitado')";
+    $sql = "INSERT INTO users (name_user, surname_user, ci_user, extci_user, expci_user, birthdate_user, telephone_user, email_user, user_user, password_user, access_user, state_user)
+            VALUES ('".$name."', '".$surname."', '".$ci."', '".$ciext."', '".$ciexp."', '".$birthdate."', '".$telephone."', '".$email."', '".$user."', '".$password."', '".$access."', 'habilitado')";
 
     $db->exec($sql);
     echo "<script languaje='javascript'>alert('Usuario agregado correctamente.'); location.href = 'admin.php';</script>";
@@ -65,7 +71,6 @@ if(isset($_POST["cilook"]) || isset($_POST["habilitados"]) || isset($_POST["desh
               <table class="content-table">
                 <thead>
                   <tr class="active-row">
-                    <th class="bg-primary" scope="col">ID</th>
                     <th class="bg-primary" scope="col">USUARIO</th>
                     <th class="bg-primary" scope="col">PASSWORD</th>
                     <th class="bg-primary" scope="col">NOMBRE</th>
@@ -90,10 +95,9 @@ if(isset($_POST["cilook"]) || isset($_POST["habilitados"]) || isset($_POST["desh
                $output .= '
                <tbody>
                     <tr>
-                         <td>'. $res["id_user"] .'</td>
                          <td>'. $res["user_user"] .'</td>
                          <td>'. $res["password_user"] .'</td>
-                         <td>'. $res["name_user"] .'</td>
+                         <td>'. $res["name_user"] . ''. " " .''. $res["surname_user"] .'</td>
                          <td>'. $res["ci_user"] .'</td>
                          <td>'. $res["access_user"] .'</td>
                          <td>'. $res["state_user"] .'</td>
