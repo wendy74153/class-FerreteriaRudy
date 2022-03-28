@@ -6,6 +6,17 @@ $db = $database->open();
 $query = "";
 $output = "";
 
+
+if(isset($_GET['itemDelete'])){
+  $id=(int) $_GET['itemDelete'];
+
+  $queryLevel = "DELETE FROM mtconstruccion WHERE id_mt='".$id."' LIMIT 1";
+  $resultLevel = $db->query($queryLevel);
+  $resultLevel->execute();
+
+  header('Location: user.php');
+}
+
 if(isset($_GET['userDelete'])){
   $id=(int) $_GET['userDelete'];
 
@@ -97,6 +108,43 @@ if(isset($_POST['addprovider'])){
     echo "<script languaje='javascript'>alert('proveedor agregado correctamente.'); location.href = 'provider.php';</script>";
   }
 }
+
+if(isset($_POST['additem'])){
+  $name = $_POST['newName'];
+  $desc = $_POST['newDesc'];
+  $precio = $_POST['newPrecio'];
+  $stock = $_POST['newStock'];
+  $peso = $_POST['newPeso'];
+  $fecha = $_POST['newFecha'];
+  $medida = $_POST['newMedida'];
+
+
+  $queryCi = "SELECT * FROM mtconstruccion WHERE id_mt='".$ci."'";
+  $resultCi = $db->query($queryCi);
+  $resultCi->execute();
+
+  $queryUser = "SELECT * FROM mtconstruccion WHERE name_mt='".$user."'";
+  $resultUser = $db->query($queryUser);
+  $resultUser->execute();
+
+  if ($resultCi->rowCount() > 0 || $resultUser->rowCount() > 0) {
+    if($resultUser->rowCount() > 0){
+      echo "<script languaje='javascript'>alert('Este nombre producto ya existe.'); location.href = 'user.php';</script>";
+    }
+    else{
+      echo "<script languaje='javascript'>alert('Este producto ya existe.'); location.href = 'user.php';</script>";
+    }
+
+  }
+  else {
+    $sql = "INSERT INTO mtconstruccion (name_mt, desc_mt, precio_mt, stock_mt, peso_mt, fecha_mt, medida_mt)
+            VALUES ('".$name."', '".$desc."', '".$precio."', '".$stock."', '".$peso."', '".$fecha."', '".$medida."')";
+
+    $db->exec($sql);
+    echo "<script languaje='javascript'>alert('Producto agregado correctamente.'); location.href = 'user.php';</script>";
+  }
+}
+
 
 if(isset($_POST["cilook"]) || isset($_POST["habilitados"]) || isset($_POST["deshabilitados"])){
   if(isset($_POST["cilook"])){
