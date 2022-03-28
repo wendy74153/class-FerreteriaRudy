@@ -16,6 +16,16 @@ if(isset($_GET['userDelete'])){
   header('Location: admin.php');
 }
 
+if(isset($_GET['providerDelete'])){
+  $id=(int) $_GET['providerDelete'];
+
+  $queryLevel = "DELETE FROM providers WHERE id_provider='".$id."' LIMIT 1";
+  $resultLevel = $db->query($queryLevel);
+  $resultLevel->execute();
+
+  header('Location: provider.php');
+}
+
 if(isset($_POST['add'])){
   $name = $_POST['newName'];
   $surname = $_POST['newSurname'];
@@ -52,6 +62,39 @@ if(isset($_POST['add'])){
 
     $db->exec($sql);
     echo "<script languaje='javascript'>alert('Usuario agregado correctamente.'); location.href = 'admin.php';</script>";
+  }
+}
+
+if(isset($_POST['addprovider'])){
+  $name = $_POST['newName'];
+  $nit = $_POST['newNit'];
+  $categoria = $_POST['newCategoria'];
+  $telephone = $_POST['newTelephone'];
+  $email = $_POST['newEmail'];
+
+  $queryCi = "SELECT * FROM providers WHERE nit_provider='".$nit."'";
+  $resultCi = $db->query($queryCi);
+  $resultCi->execute();
+
+  $queryUser = "SELECT * FROM providers WHERE name_provider='".$name."'";
+  $resultUser = $db->query($queryUser);
+  $resultUser->execute();
+
+  if ($resultCi->rowCount() > 0 || $resultUser->rowCount() > 0) {
+    if($resultUser->rowCount() > 0){
+      echo "<script languaje='javascript'>alert('Este nombre usuario ya existe.'); location.href = 'admin.php';</script>";
+    }
+    else{
+      echo "<script languaje='javascript'>alert('Esta cuenta ya existe, contactarse con un administrador si tiene problemas para conectarse.'); location.href = 'admin.php';</script>";
+    }
+
+  }
+  else {
+    $sql = "INSERT INTO providers (categoria_provider, name_provider, nit_provider, telephone_provider, email_provider)
+            VALUES ('".$categoria."', '".$name."', '".$nit."', '".$telephone."', '".$email."')";
+
+    $db->exec($sql);
+    echo "<script languaje='javascript'>alert('proveedor agregado correctamente.'); location.href = 'provider.php';</script>";
   }
 }
 
