@@ -68,7 +68,7 @@
                   <option value="2">MATERIAL DE ELECTRICIDAD</option>
                   <option value="3">MAQUINARIAS DE CONSTRUCCION Y ELECTRICIDAD</option>
                   <option value="4">MATERIALES DE PINTURA</option>
-                  <option value="5">MATERIALES DE CARPINTERIA</option>
+                  <option value="5">MATERIAL DE CARPINTERIA</option>
                   <option value="6">MAQUINARIAS DE PINTURA Y CARPINTERIA</option>
                   <option value="7">MATERIALES DE PLOMERIA</option>
                   <option value="8">MATERIALES DE SOLDADURA</option>
