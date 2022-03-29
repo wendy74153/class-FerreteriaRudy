@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2022 a las 23:38:11
+-- Tiempo de generación: 29-03-2022 a las 03:21:38
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -51,6 +51,54 @@ INSERT INTO `category` (`id_category`, `name_category`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mtconstruccion`
+--
+
+CREATE TABLE `mtconstruccion` (
+  `id_mt` int(11) NOT NULL,
+  `name_mt` varchar(50) NOT NULL,
+  `desc_mt` varchar(50) NOT NULL,
+  `precio_mt` float NOT NULL,
+  `stock_mt` int(11) NOT NULL,
+  `peso_mt` float NOT NULL,
+  `fecha_mt` date NOT NULL,
+  `medida_mt` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `mtconstruccion`
+--
+
+INSERT INTO `mtconstruccion` (`id_mt`, `name_mt`, `desc_mt`, `precio_mt`, `stock_mt`, `peso_mt`, `fecha_mt`, `medida_mt`) VALUES
+(3, 'Ladrillo', 'Ladrillo de construccion 6 huecos', 850, 10000, 0, '2022-03-31', 0),
+(7, 'Cemento Yura', 'Cemento Peruano', 43, 50, 48, '2022-05-28', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mtelectricidad`
+--
+
+CREATE TABLE `mtelectricidad` (
+  `id_mt` int(11) NOT NULL,
+  `name_mt` varchar(50) NOT NULL,
+  `desc_mt` varchar(50) NOT NULL,
+  `precio_mt` float NOT NULL,
+  `stock_mt` int(11) NOT NULL,
+  `fecha_mt` date NOT NULL,
+  `medida_mt` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `mtelectricidad`
+--
+
+INSERT INTO `mtelectricidad` (`id_mt`, `name_mt`, `desc_mt`, `precio_mt`, `stock_mt`, `fecha_mt`, `medida_mt`) VALUES
+(1, 'Cable 10mm', 'Cable eléctrico', 18, 50, '0000-00-00', 100);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `providers`
 --
 
@@ -68,7 +116,7 @@ CREATE TABLE `providers` (
 --
 
 INSERT INTO `providers` (`id_provider`, `categoria_provider`, `name_provider`, `nit_provider`, `telephone_provider`, `email_provider`) VALUES
-(1, 6, 'sfadf', 444, 45456, 'ramiro.molina@uab.edu.bo');
+(2, 4, 'San JosÃ© S.R.L', 789465, 76431509, 'sanjose@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -99,7 +147,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `name_user`, `surname_user`, `ci_user`, `extci_user`, `expci_user`, `birthdate_user`, `telephone_user`, `email_user`, `user_user`, `password_user`, `access_user`, `state_user`) VALUES
 (1, 'Ramiro', 'Molina Zeballos', 11111111, '', 'CB', '2022-03-01', 76431509, 'ramiromolinazeballos@gmail.com', 'ramiro.molina', '123456', 2, 'habilitado'),
 (2, 'Jose Ademar', 'Sanchez Mejia', 99999999, NULL, 'CB', '2022-03-04', 98745873, 'joseademarsanchezmejia@gmail.com', 'jose.sanchez', '123abC', 2, 'deshabilitado'),
-(9, 'srl', '', 0, '', '', '0000-00-00', 789456, 'a@gmail.com', '', '', 0, 'habilitado');
+(11, 'Seydi', 'Guzman Lopez', 45784512, '', 'CB', '1993-02-28', 456132654, 'seydi@gmail.com', 'seydi.guzman', '123456', 1, 'habilitado');
 
 --
 -- Índices para tablas volcadas
@@ -110,6 +158,18 @@ INSERT INTO `users` (`id_user`, `name_user`, `surname_user`, `ci_user`, `extci_u
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id_category`);
+
+--
+-- Indices de la tabla `mtconstruccion`
+--
+ALTER TABLE `mtconstruccion`
+  ADD PRIMARY KEY (`id_mt`);
+
+--
+-- Indices de la tabla `mtelectricidad`
+--
+ALTER TABLE `mtelectricidad`
+  ADD PRIMARY KEY (`id_mt`);
 
 --
 -- Indices de la tabla `providers`
@@ -135,16 +195,28 @@ ALTER TABLE `category`
   MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de la tabla `mtconstruccion`
+--
+ALTER TABLE `mtconstruccion`
+  MODIFY `id_mt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `mtelectricidad`
+--
+ALTER TABLE `mtelectricidad`
+  MODIFY `id_mt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `providers`
 --
 ALTER TABLE `providers`
-  MODIFY `id_provider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_provider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
