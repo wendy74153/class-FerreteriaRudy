@@ -60,7 +60,7 @@
           <form class="form-add" action="function.php" method="POST">
             <h2>DATOS PROVEEDOR</h2>
             <br>
-            <input type="text" class="add-user" name="newName" value="" placeholder="Ingresar Razón Social" required>
+            <input type="texT" class="add-user" name="newName" value="" placeholder="Ingresar Razón Social" required>
             <input type="number" class="add-user" name="newNit" value="" placeholder="Ingresar NIT" required>
             <input type="text" class="add-user" name="newCategoria" value="" placeholder="Ingrese Categoría" list="categoria" required>
               <datalist id="categoria">
