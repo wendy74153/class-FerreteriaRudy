@@ -1,17 +1,18 @@
 <?php
   session_start();
+  header('Content-Type: text/html; charset=UTF-8'); 
   include_once 'php/connection.php';
   $database = new Connection();
   $db = $database->open();
 
-  $query = "SELECT * FROM users ORDER BY access_user ASC";
+  $query = "SELECT * FROM mtconstruccion WHERE item_mt = '6' ORDER BY id_mt ASC";
   $result = $db->query($query);
 
   if(!isset($_SESSION['key'])){
     header('location: login.html');
   }
   else{
-    if($_SESSION['key'] != 2){
+    if($_SESSION['key'] != 1){
       header('location: login.html');
     }
   }
@@ -74,9 +75,15 @@
       <div class="brand-bar"></div>
 
       <ul>
-        <a href="admin.php"><li><img src="css/img/people.png" alt="" class="list-nav">&nbsp; <span>Usuarios</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Proveedores</span></li></a>
-        <a href="list.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Solicitudes</span></li></a>
+        <a href="user.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Construcción</span></li></a>
+        <a href="pro1.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Electricidad</span></li></a>
+        <a href="pro2.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Cons-Elec</span></li></a>
+        <a href="pro3.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Pintura</span></li></a>
+        <a href="pro4.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Carpinteria</span></li></a>
+        <a href="pro5.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Pint-Carp</span></li></a>
+        <a href="pro6.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Plomería</span></li></a>
+        <a href="pro7.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Soldadura</span></li></a>
+        <a href="pro8.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Plom-Sold</span></li></a>
       </ul>
     </div>
 
@@ -96,7 +103,7 @@
       <div class="content">
         <div class="menu-nav">
           <div class="col-md-3">
-            <input type="text" name="userlook" id="cilook" class="form-control" placeholder="CI Usuario" />
+            <input type="text" name="userlook" id="itemlook" class="form-control" placeholder="Nombre Producto" />
           </div>
           
           <div>
@@ -104,9 +111,7 @@
           </div>
 
           <div class="col-md-5">
-            <input type="button" name="habilitados"  id="habilitados" value="Habilitados" class="btn btn-info" />
-            <input type="button" name="deshabilitados"  id="deshabilitados" value="Deshabilitados" class="btn btn-info" />
-            <a href="adminAdd.php">
+            <a href="itemAdd.php">
             <input type="button" name="addUser"  value="Agregar" class="btn btn-info">
             </a>
           </div>
@@ -119,12 +124,13 @@
               <table class="content-table">
                 <thead>
                   <tr class="active-row">
-                    <th class="bg-primary" scope="col">USUARIO</th>
-                    <th class="bg-primary" scope="col">PASSWORD</th>
-                    <th class="bg-primary" scope="col">NOMBRE</th>
-                    <th class="bg-primary" scope="col">CI</th>
-                    <th class="bg-primary" scope="col">ACCESO</th>
-                    <th class="bg-primary" scope="col">ESTADO</th>
+                    <th class="bg-primary" scope="col">PRODUCTO</th>
+                    <th class="bg-primary" scope="col">DESCRIPCION</th>
+                    <th class="bg-primary" scope="col">PRECIO</th>
+                    <th class="bg-primary" scope="col">STOCK</th>
+                    <th class="bg-primary" scope="col">PESO</th>
+                    <th class="bg-primary" scope="col">VENCE</th>
+                    <th class="bg-primary" scope="col">MEDIDA</th>
                     <th class="bg-primary" scope="col">OPCIONES</th>
                   </tr>
                 </thead>
@@ -133,25 +139,17 @@
                 foreach($result as $res):?>
                 <tbody>
                   <tr>
-                    <td><?php echo $res["user_user"]; ?></td>
-                    <td><?php echo $res["password_user"]; ?></td>
-                    <td><?php echo $res["name_user"], " ", $res["surname_user"];?></td>
-                    <td><?php echo $res["ci_user"]; ?></td>
-                    <td><?php echo $res["access_user"]; ?></td>
-                    <td><?php echo $res["state_user"]; ?></td>
+                    <td><?php echo $res["name_mt"]; ?></td>
+                    <td style="width: 20px;"><?php echo $res["desc_mt"]; ?></td>
+                    <td><?php echo $res["precio_mt"]; ?></td>
+                    <td><?php echo $res["stock_mt"]; ?></td>
+                    <td><?php echo $res["peso_mt"]; ?></td>
+                    <td><?php echo $res["fecha_mt"]; ?></td>
+                    <td><?php echo $res["medida_mt"]; ?></td>
                     <td>
-                      <a href="admin.php?userState=<?php echo $res['id_user']; ?>" class="btnAction btn btn-info">
-                        <?php
-                          if($res["state_user"] == 'habilitado'){
-                            echo "Deshabilitar";
-                          }
-                          else{
-                            echo "Habilitar";
-                          }
-                        ?>
-                      </a>
-                      <a href="adminUpdate.php?userList=<?php echo $res['id_user']; ?>" class="btnAction btn btn-info">Editar</a>
-                      <a href="function.php?userDelete=<?php echo $res['id_user']; ?>" class="btnAction btn btn-info">Eliminar</a>
+                      <a href="function.php?itemSend=<?php echo $res['id_mt']; ?>" class="btnAction btn btn-info">Solicitar</a>
+                      <a href="itemUpdate.php?userList=<?php echo $res['id_mt']; ?>" class="btnAction btn btn-info">Editar</a>
+                      <a href="function.php?itemDelete=<?php echo $res['id_mt']; ?>" class="btnAction btn btn-info">Eliminar</a>
                     </td>
                   </tr>
                 </tbody>
@@ -163,20 +161,19 @@
       </div>
     </div>
 
-
   </body>
 </html>
 
 <script>
      $(document).ready(function(){
           $('#filte').click(function(){
-               var cilook = $("#cilook").val();
-               if(cilook != '')
+               var itemlook = $("#itemlook").val();
+               if(itemlook != '')
                {
                     $.ajax({
                          url:"function.php",
                          method:"POST",
-                         data:{cilook:cilook},
+                         data:{itemlook:itemlook},
                          success:function(data)
                          {
                               $('#order_table').html(data);

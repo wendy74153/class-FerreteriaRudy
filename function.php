@@ -1,11 +1,40 @@
 <?php
 session_start();
+header('Content-Type: text/html; charset=UTF-8'); 
 include_once 'php/connection.php';
 $database = new Connection();
 $db = $database->open();
 $query = "";
 $output = "";
 
+if(isset($_GET['itemSend'])){
+  $id=(int) $_GET['itemSend'];
+
+
+  $queryUser = "SELECT * FROM list WHERE category_list='".$id."'";
+  $resultUser = $db->query($queryUser);
+  $resultUser->execute();
+
+  if ($resultUser->rowCount() > 0) {
+    echo "<script languaje='javascript'>alert('Solicitud en Proceso.'); location.href = 'user.php';</script>";
+  }
+  else {
+    $sql = "INSERT INTO list (category_list) VALUES ('".$id."')";
+    $db->exec($sql);
+    echo "<script languaje='javascript'>alert('Solicitud enviada.'); location.href = 'user.php';</script>";
+  }
+
+}
+
+if(isset($_GET['sendDelete'])){
+  $id=(int) $_GET['sendDelete'];
+
+  $queryLevel = "DELETE FROM list WHERE id_list='".$id."' LIMIT 1";
+  $resultLevel = $db->query($queryLevel);
+  $resultLevel->execute();
+
+  header('Location: list.php');
+}
 
 if(isset($_GET['itemDelete'])){
   $id=(int) $_GET['itemDelete'];
@@ -110,6 +139,7 @@ if(isset($_POST['addprovider'])){
 }
 
 if(isset($_POST['additem'])){
+  $categoria = $_POST['newCategoria'];
   $name = $_POST['newName'];
   $desc = $_POST['newDesc'];
   $precio = $_POST['newPrecio'];
@@ -118,27 +148,16 @@ if(isset($_POST['additem'])){
   $fecha = $_POST['newFecha'];
   $medida = $_POST['newMedida'];
 
-
-  $queryCi = "SELECT * FROM mtconstruccion WHERE id_mt='".$ci."'";
-  $resultCi = $db->query($queryCi);
-  $resultCi->execute();
-
-  $queryUser = "SELECT * FROM mtconstruccion WHERE name_mt='".$user."'";
+  $queryUser = "SELECT * FROM mtconstruccion WHERE name_mt='".$name."'";
   $resultUser = $db->query($queryUser);
   $resultUser->execute();
 
-  if ($resultCi->rowCount() > 0 || $resultUser->rowCount() > 0) {
-    if($resultUser->rowCount() > 0){
-      echo "<script languaje='javascript'>alert('Este nombre producto ya existe.'); location.href = 'user.php';</script>";
-    }
-    else{
-      echo "<script languaje='javascript'>alert('Este producto ya existe.'); location.href = 'user.php';</script>";
-    }
-
+  if ($resultUser->rowCount() > 0) {
+    echo "<script languaje='javascript'>alert('Este producto ya existe.'); location.href = 'user.php';</script>";
   }
   else {
-    $sql = "INSERT INTO mtconstruccion (name_mt, desc_mt, precio_mt, stock_mt, peso_mt, fecha_mt, medida_mt)
-            VALUES ('".$name."', '".$desc."', '".$precio."', '".$stock."', '".$peso."', '".$fecha."', '".$medida."')";
+    $sql = "INSERT INTO mtconstruccion (item_mt, name_mt, desc_mt, precio_mt, stock_mt, peso_mt, fecha_mt, medida_mt)
+            VALUES ('".$categoria."', '".$name."', '".$desc."', '".$precio."', '".$stock."', '".$peso."', '".$fecha."', '".$medida."')";
 
     $db->exec($sql);
     echo "<script languaje='javascript'>alert('Producto agregado correctamente.'); location.href = 'user.php';</script>";
@@ -198,6 +217,63 @@ if(isset($_POST["cilook"]) || isset($_POST["habilitados"]) || isset($_POST["desh
                            </a>
                            <a href="adminUpdate.php?userList='.$res['id_user'].'" class="btn">Editar</a>
                            <a href="function.php?userDelete='.$res['id_user'].'" class="btn">Eliminar</a>
+                        </td>
+                    </tr>
+                  </tbody>
+               ';
+          }
+     }
+     else
+     {
+          $output .= '
+               <tr>
+                    <td colspan="8" style="text-align:center;">Datos no encontrados</td>
+               </tr>
+          ';
+     }
+     $output .= '</table>';
+     echo $output;
+   }
+
+if(isset($_POST["itemlook"])){
+  if(isset($_POST["itemlook"])){
+    $query = "SELECT * FROM mtconstruccion WHERE name_mt LIKE LOWER('%".$_POST["itemlook"]."%')";
+  }
+
+  $result = $db->query($query);
+  $output .= '
+              <table class="content-table">
+                <thead>
+                  <tr class="active-row">
+                  <th class="bg-primary" scope="col">PRODUCTO</th>
+                  <th class="bg-primary" scope="col">DESCRIPCION</th>
+                  <th class="bg-primary" scope="col">PRECIO</th>
+                  <th class="bg-primary" scope="col">STOCK</th>
+                  <th class="bg-primary" scope="col">PESO</th>
+                  <th class="bg-primary" scope="col">VENCE</th>
+                  <th class="bg-primary" scope="col">MEDIDA</th>
+                  <th class="bg-primary" scope="col">OPCIONES</th>
+                  </tr>
+                </thead>
+     ';
+     if($result->rowCount() > 0)
+     {
+       $value = '';
+          while($res = $result->fetch(PDO::FETCH_BOTH))
+          {
+               $output .= '
+               <tbody>
+                    <tr>
+                         <td>'. $res["name_mt"] .'</td>
+                         <td style="width: 20px";>'. $res["desc_mt"] .'</td>
+                         <td>'. $res["precio_mt"] .'</td>
+                         <td>'. $res["stock_mt"] .'</td>
+                         <td>'. $res["peso_mt"] .'</td>
+                         <td>'. $res["fecha_mt"] .'</td>
+                         <td>'. $res["medida_mt"] .'</td>
+                         <td>
+                           <a href="itemUpdate.php?userList='.$res['id_mt'].'" class="btnAction btn btn-info">Editar</a>
+                           <a href="function.php?itemDelete='.$res['id_mt'].'" class="btnAction btn btn-info">Eliminar</a>
                         </td>
                     </tr>
                   </tbody>

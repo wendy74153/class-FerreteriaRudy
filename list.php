@@ -4,8 +4,11 @@
   $database = new Connection();
   $db = $database->open();
 
-  $query = "SELECT * FROM users ORDER BY access_user ASC";
+  $query = "SELECT * FROM mtconstruccion ORDER BY id_mt ASC";
   $result = $db->query($query);
+
+  $queryList = "SELECT * FROM list ORDER BY category_list ASC";
+  $resultList = $db->query($queryList);
 
   if(!isset($_SESSION['key'])){
     header('location: login.html');
@@ -94,68 +97,51 @@
       </div>
 
       <div class="content">
-        <div class="menu-nav">
-          <div class="col-md-3">
-            <input type="text" name="userlook" id="cilook" class="form-control" placeholder="CI Usuario" />
-          </div>
-          
-          <div>
-          <input type="image" name="filte" id="filte" value="Buscar" class="btn menu-search " src="css/img/search.png" />
-          </div>
-
-          <div class="col-md-5">
-            <input type="button" name="habilitados"  id="habilitados" value="Habilitados" class="btn btn-info" />
-            <input type="button" name="deshabilitados"  id="deshabilitados" value="Deshabilitados" class="btn btn-info" />
-            <a href="adminAdd.php">
-            <input type="button" name="addUser"  value="Agregar" class="btn btn-info">
-            </a>
-          </div>
-        </div>
-
+        <br>
         <div class="seccion">
           <form>
-            <h2></h2>
+            <h2 style="text-align:center; color: #f05462;">SOLICITUDES DE PRODUCTOS</h2>
+            <br>
             <div id="order_table">
               <table class="content-table">
                 <thead>
-                  <tr class="active-row">
-                    <th class="bg-primary" scope="col">USUARIO</th>
-                    <th class="bg-primary" scope="col">PASSWORD</th>
-                    <th class="bg-primary" scope="col">NOMBRE</th>
-                    <th class="bg-primary" scope="col">CI</th>
-                    <th class="bg-primary" scope="col">ACCESO</th>
-                    <th class="bg-primary" scope="col">ESTADO</th>
+                <tr class="active-row">
+                    <th class="bg-primary" scope="col">PRODUCTO</th>
+                    <th class="bg-primary" scope="col">DESCRIPCION</th>
+                    <th class="bg-primary" scope="col">PRECIO</th>
+                    <th class="bg-primary" scope="col">STOCK</th>
+                    <th class="bg-primary" scope="col">PESO</th>
+                    <th class="bg-primary" scope="col">VENCE</th>
+                    <th class="bg-primary" scope="col">MEDIDA</th>
                     <th class="bg-primary" scope="col">OPCIONES</th>
                   </tr>
                 </thead>
 
                 <?php
-                foreach($result as $res):?>
+                foreach($result as $res){
+                    foreach($resultList as $resList){
+                        if ($res["id_mt"]  == $resList["category_list"]) {
+                ?>
                 <tbody>
                   <tr>
-                    <td><?php echo $res["user_user"]; ?></td>
-                    <td><?php echo $res["password_user"]; ?></td>
-                    <td><?php echo $res["name_user"], " ", $res["surname_user"];?></td>
-                    <td><?php echo $res["ci_user"]; ?></td>
-                    <td><?php echo $res["access_user"]; ?></td>
-                    <td><?php echo $res["state_user"]; ?></td>
+                  <tr>
+                    <td><?php echo $res["name_mt"]; ?></td>
+                    <td style="width: 20px;"><?php echo $res["desc_mt"]; ?></td>
+                    <td><?php echo $res["precio_mt"]; ?></td>
+                    <td><?php echo $res["stock_mt"]; ?></td>
+                    <td><?php echo $res["peso_mt"]; ?></td>
+                    <td><?php echo $res["fecha_mt"]; ?></td>
+                    <td><?php echo $res["medida_mt"]; ?></td>
                     <td>
-                      <a href="admin.php?userState=<?php echo $res['id_user']; ?>" class="btnAction btn btn-info">
-                        <?php
-                          if($res["state_user"] == 'habilitado'){
-                            echo "Deshabilitar";
-                          }
-                          else{
-                            echo "Habilitar";
-                          }
-                        ?>
-                      </a>
-                      <a href="adminUpdate.php?userList=<?php echo $res['id_user']; ?>" class="btnAction btn btn-info">Editar</a>
-                      <a href="function.php?userDelete=<?php echo $res['id_user']; ?>" class="btnAction btn btn-info">Eliminar</a>
+                      <a href="function.php?sendDelete=<?php echo $resList['id_list']; ?>" class="btnAction btn btn-info">Entregado</a>
                     </td>
                   </tr>
+                  </tr>
                 </tbody>
-                <?php endforeach ?>
+                <?php   
+                        }
+                    }
+                } ?>
               </table>
             </div>
           </form>

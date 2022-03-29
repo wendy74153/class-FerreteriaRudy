@@ -34,15 +34,15 @@
       <div class="brand-bar"></div>
 
       <ul>
-        <a href="user.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Construcción</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Electricidad</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Maq-Cons-Elec</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Pintura</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Carpinteria</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Maq-Pint-Carp</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Plomería</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Soldadura</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Maq-Plom-Sold</span></li></a>
+        <a href="user.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Construcción</span></li></a>
+        <a href="pro1.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Electricidad</span></li></a>
+        <a href="pro2.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Cons-Elec</span></li></a>
+        <a href="pro3.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Pintura</span></li></a>
+        <a href="pro4.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Carpinteria</span></li></a>
+        <a href="pro5.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Pint-Carp</span></li></a>
+        <a href="pro6.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Plomería</span></li></a>
+        <a href="pro7.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Soldadura</span></li></a>
+        <a href="pro8.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Plom-Sold</span></li></a>
       </ul>
     </div>
     
@@ -67,13 +67,25 @@
           <form class="form-add" action="function.php" method="POST">
             <h2>DATOS PRODUCTO</h2>
             <br>
+            <input type="text" class="add-user" name="newCategoria" value="" placeholder="Ingrese Categoría Producto" list="categoria" required>
+              <datalist id="categoria">
+                  <option value="1">MATERIAL DE CONSTRUCCION</option>
+                  <option value="2">MATERIAL DE ELECTRICIDAD</option>
+                  <option value="3">MAQUINARIAS DE CONSTRUCCION Y ELECTRICIDAD</option>
+                  <option value="4">MATERIALES DE PINTURA</option>
+                  <option value="5">MATERIALES DE CARPINTERIA</option>
+                  <option value="6">MAQUINARIAS DE PINTURA Y CARPINTERIA</option>
+                  <option value="7">MATERIALES DE PLOMERIA</option>
+                  <option value="8">MATERIALES DE SOLDADURA</option>
+                  <option value="9">MATERIALES DE PLOMERIA Y SOLDADURA</option>
+                </datalist>
             <input type="text" class="add-user" name="newName" value="" placeholder="Ingresar Nombre Producto" required>
             <input type="text" class="add-user" name="newDesc" value="" placeholder="Ingrese Descripción" required>
             <input type="number" class="add-user" name="newPrecio" value="" placeholder="Ingresar Precio" step="any" required>
             <input type="number" class="add-user" name="newStock" value="" placeholder="Ingresar Stock" required>
-            <input type="number" class="add-user" name="newPeso" value="" placeholder="Ingresar Peso" step="any" required>
-            <input type="date" class="add-user" name="newFecha" value="" placeholder="Ingrese Fecha" required>
-            <input type="number" class="add-user" name="newMedida" value="" placeholder="Ingresar Medida" step="any" required>
+            <input type="number" class="add-user" name="newPeso" value="" placeholder="Ingresar Peso" step="any">
+            <input type="date" class="add-user" name="newFecha" value="" placeholder="Ingrese Fecha">
+            <input type="number" class="add-user" name="newMedida" value="" placeholder="Ingresar Medida" step="any">
             <button type="submit" name="additem" class="btn btn-user">AGREGAR PRODUCTO</button>
           </form>
           </div>

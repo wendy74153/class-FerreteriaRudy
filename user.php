@@ -1,10 +1,11 @@
 <?php
   session_start();
+  header('Content-Type: text/html; charset=UTF-8'); 
   include_once 'php/connection.php';
   $database = new Connection();
   $db = $database->open();
 
-  $query = "SELECT * FROM mtconstruccion ORDER BY id_mt ASC";
+  $query = "SELECT * FROM mtconstruccion WHERE item_mt = '1' ORDER BY id_mt ASC";
   $result = $db->query($query);
 
   if(!isset($_SESSION['key'])){
@@ -74,15 +75,15 @@
       <div class="brand-bar"></div>
 
       <ul>
-        <a href="user.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Construcción</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Electricidad</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Maq-Cons-Elec</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Pintura</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Carpinteria</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Maq-Pint-Carp</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Plomería</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Mat-Soldadura</span></li></a>
-        <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Maq-Plom-Sold</span></li></a>
+        <a href="user.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Construcción</span></li></a>
+        <a href="pro1.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Electricidad</span></li></a>
+        <a href="pro2.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Cons-Elec</span></li></a>
+        <a href="pro3.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Pintura</span></li></a>
+        <a href="pro4.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Carpinteria</span></li></a>
+        <a href="pro5.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Pint-Carp</span></li></a>
+        <a href="pro6.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Plomería</span></li></a>
+        <a href="pro7.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Soldadura</span></li></a>
+        <a href="pro8.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Plom-Sold</span></li></a>
       </ul>
     </div>
 
@@ -102,7 +103,7 @@
       <div class="content">
         <div class="menu-nav">
           <div class="col-md-3">
-            <input type="text" name="userlook" id="cilook" class="form-control" placeholder="ID Producto" />
+            <input type="text" name="userlook" id="itemlook" class="form-control" placeholder="Nombre Producto" />
           </div>
           
           <div>
@@ -128,7 +129,7 @@
                     <th class="bg-primary" scope="col">PRECIO</th>
                     <th class="bg-primary" scope="col">STOCK</th>
                     <th class="bg-primary" scope="col">PESO</th>
-                    <th class="bg-primary" scope="col">FECHA</th>
+                    <th class="bg-primary" scope="col">VENCE</th>
                     <th class="bg-primary" scope="col">MEDIDA</th>
                     <th class="bg-primary" scope="col">OPCIONES</th>
                   </tr>
@@ -139,14 +140,14 @@
                 <tbody>
                   <tr>
                     <td><?php echo $res["name_mt"]; ?></td>
-                    <td><?php echo $res["desc_mt"]; ?></td>
+                    <td style="width: 20px;"><?php echo $res["desc_mt"]; ?></td>
                     <td><?php echo $res["precio_mt"]; ?></td>
                     <td><?php echo $res["stock_mt"]; ?></td>
                     <td><?php echo $res["peso_mt"]; ?></td>
                     <td><?php echo $res["fecha_mt"]; ?></td>
                     <td><?php echo $res["medida_mt"]; ?></td>
                     <td>
-
+                      <a href="function.php?itemSend=<?php echo $res['id_mt']; ?>" class="btnAction btn btn-info">Solicitar</a>
                       <a href="itemUpdate.php?userList=<?php echo $res['id_mt']; ?>" class="btnAction btn btn-info">Editar</a>
                       <a href="function.php?itemDelete=<?php echo $res['id_mt']; ?>" class="btnAction btn btn-info">Eliminar</a>
                     </td>
@@ -160,20 +161,19 @@
       </div>
     </div>
 
-
   </body>
 </html>
 
 <script>
      $(document).ready(function(){
           $('#filte').click(function(){
-               var cilook = $("#cilook").val();
-               if(cilook != '')
+               var itemlook = $("#itemlook").val();
+               if(itemlook != '')
                {
                     $.ajax({
                          url:"function.php",
                          method:"POST",
-                         data:{cilook:cilook},
+                         data:{itemlook:itemlook},
                          success:function(data)
                          {
                               $('#order_table').html(data);

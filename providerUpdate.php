@@ -95,6 +95,7 @@
       <ul>
         <a href="admin.php"><li><img src="css/img/people.png" alt="" class="list-nav">&nbsp; <span>Usuarios</span></li></a>
         <a href="provider.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Proveedores</span></li></a>
+        <a href="list.php"><li><img src="css/img/provider.png" alt="" class="list-nav">&nbsp;<span>Solicitudes</span></li></a>
       </ul>
     </div>
     

@@ -58,8 +58,10 @@ button:hover {
   padding: 15px;
   /*background: -webkit-linear-gradient(to right, #00dbde, RED);
   background: linear-gradient(to right, #00dbde, RED);*/
-  background-color: #FF3CAC;
-  background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+  background-color: #f05462;
+  background-image: linear-gradient(225deg, #f05462 0%, #784BA0 50%, #2B86C5 100%)
+  /*background-color: #FF3CAC;
+  background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);*/
 
 }
 
@@ -137,12 +139,14 @@ button:hover {
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
-
+  background-color: #f05462;
+  /*
   background: #6a7dfe;
   background: -webkit-linear-gradient(left, #21d4fd, #b721ff);
   background: -o-linear-gradient(left, #21d4fd, #b721ff);
   background: -moz-linear-gradient(left, #21d4fd, #b721ff);
   background: linear-gradient(left, #21d4fd, #b721ff);
+  */
 }
 
 .focus-efecto::after {
@@ -212,11 +216,18 @@ button:hover {
   z-index: -1;
   width: 300%;
   height: 100%;
+  background: #f05462;
+  background: -webkit-linear-gradient(right, #21d4fd, #f05462, #21d4fd, #f05462);
+  background: -o-linear-gradient(right, #21d4fd, #f05462, #21d4fd, #f05462);
+  background: -moz-linear-gradient(right, #21d4fd, #f05462, #21d4fd, #f05462);
+  background: linear-gradient(right, #21d4fd, #f05462, #21d4fd, #f05462);
+  /*
   background: #a64bf4;
   background: -webkit-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
   background: -o-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
   background: -moz-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
   background: linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
+  */
   top: 0;
   left: -100%;
 

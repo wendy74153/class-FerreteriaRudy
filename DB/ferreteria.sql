@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-03-2022 a las 03:21:38
+-- Tiempo de generación: 29-03-2022 a las 19:45:25
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -51,11 +51,30 @@ INSERT INTO `category` (`id_category`, `name_category`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `list`
+--
+
+CREATE TABLE `list` (
+  `id_list` int(11) NOT NULL,
+  `category_list` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `list`
+--
+
+INSERT INTO `list` (`id_list`, `category_list`) VALUES
+(2, 9);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mtconstruccion`
 --
 
 CREATE TABLE `mtconstruccion` (
   `id_mt` int(11) NOT NULL,
+  `item_mt` int(11) NOT NULL,
   `name_mt` varchar(50) NOT NULL,
   `desc_mt` varchar(50) NOT NULL,
   `precio_mt` float NOT NULL,
@@ -69,32 +88,10 @@ CREATE TABLE `mtconstruccion` (
 -- Volcado de datos para la tabla `mtconstruccion`
 --
 
-INSERT INTO `mtconstruccion` (`id_mt`, `name_mt`, `desc_mt`, `precio_mt`, `stock_mt`, `peso_mt`, `fecha_mt`, `medida_mt`) VALUES
-(3, 'Ladrillo', 'Ladrillo de construccion 6 huecos', 850, 10000, 0, '2022-03-31', 0),
-(7, 'Cemento Yura', 'Cemento Peruano', 43, 50, 48, '2022-05-28', 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `mtelectricidad`
---
-
-CREATE TABLE `mtelectricidad` (
-  `id_mt` int(11) NOT NULL,
-  `name_mt` varchar(50) NOT NULL,
-  `desc_mt` varchar(50) NOT NULL,
-  `precio_mt` float NOT NULL,
-  `stock_mt` int(11) NOT NULL,
-  `fecha_mt` date NOT NULL,
-  `medida_mt` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `mtelectricidad`
---
-
-INSERT INTO `mtelectricidad` (`id_mt`, `name_mt`, `desc_mt`, `precio_mt`, `stock_mt`, `fecha_mt`, `medida_mt`) VALUES
-(1, 'Cable 10mm', 'Cable eléctrico', 18, 50, '0000-00-00', 100);
+INSERT INTO `mtconstruccion` (`id_mt`, `item_mt`, `name_mt`, `desc_mt`, `precio_mt`, `stock_mt`, `peso_mt`, `fecha_mt`, `medida_mt`) VALUES
+(9, 1, 'Mortero Camba', 'Tipo cemento usado para fortalecer estructuras.', 18, 50, 0, '2022-08-31', 0),
+(10, 1, 'Cemento Camba', 'Cemento CruceÃ±o.', 58, 100, 45, '2022-04-20', 0),
+(11, 2, 'Cable #10', 'Cable para instalaciones elÃ©ctricas domiciliarias', 250, 30, 0, '0000-00-00', 100);
 
 -- --------------------------------------------------------
 
@@ -160,16 +157,19 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id_category`);
 
 --
+-- Indices de la tabla `list`
+--
+ALTER TABLE `list`
+  ADD PRIMARY KEY (`id_list`),
+  ADD KEY `category_list` (`category_list`);
+
+--
 -- Indices de la tabla `mtconstruccion`
 --
 ALTER TABLE `mtconstruccion`
-  ADD PRIMARY KEY (`id_mt`);
-
---
--- Indices de la tabla `mtelectricidad`
---
-ALTER TABLE `mtelectricidad`
-  ADD PRIMARY KEY (`id_mt`);
+  ADD PRIMARY KEY (`id_mt`),
+  ADD KEY `item_mt` (`item_mt`),
+  ADD KEY `item_mt_2` (`item_mt`);
 
 --
 -- Indices de la tabla `providers`
@@ -195,16 +195,16 @@ ALTER TABLE `category`
   MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de la tabla `list`
+--
+ALTER TABLE `list`
+  MODIFY `id_list` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `mtconstruccion`
 --
 ALTER TABLE `mtconstruccion`
-  MODIFY `id_mt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de la tabla `mtelectricidad`
---
-ALTER TABLE `mtelectricidad`
-  MODIFY `id_mt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_mt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `providers`
@@ -221,6 +221,18 @@ ALTER TABLE `users`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `list`
+--
+ALTER TABLE `list`
+  ADD CONSTRAINT `list_ibfk_1` FOREIGN KEY (`category_list`) REFERENCES `category` (`id_category`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `mtconstruccion`
+--
+ALTER TABLE `mtconstruccion`
+  ADD CONSTRAINT `mtconstruccion_ibfk_1` FOREIGN KEY (`item_mt`) REFERENCES `category` (`id_category`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `providers`
