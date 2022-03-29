@@ -111,7 +111,7 @@
               <table class="content-table">
                 <thead>
                   <tr class="active-row">
-                    <th class="bg-primary" scope="col">RAZÓN SOCIAL</th>
+                    <th class="bg-primary" scope="col">RAZON SOCIAL</th>
                     <th class="bg-primary" scope="col">CATEGORÍA</th>
                     <th class="bg-primary" scope="col">NIT</th>
                     <th class="bg-primary" scope="col">TELEFONO</th>
