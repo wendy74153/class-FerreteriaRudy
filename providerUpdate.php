@@ -122,7 +122,7 @@
             <datalist id="categoria">
                   <option value="1">MATERIAL DE CONSTRUCCION</option>
                   <option value="2">MATERIAL DE ELECTRICIDAD</option>
-                  <option value="3">MAQUINARIAS DE CONSTRUCCION Y ELECTRICIDAD</option>
+                  <option value="3">MAQUINARIAS DE CONSTRUICCION Y ELECTRICIDAD PEDRO</option>
                   <option value="4">MATERIALES DE PINTURA</option>
                   <option value="5">MATERIALES DE CARPINTERIA</option>
                   <option value="6">MAQUINARIAS DE PINTURA Y CARPINTERIA</option>
