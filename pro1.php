@@ -75,6 +75,7 @@
       <div class="brand-bar"></div>
 
       <ul>
+
         <a href="user.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Construcción</span></li></a>
         <a href="pro1.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Electricidad</span></li></a>
         <a href="pro2.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Cons-Elec</span></li></a>
@@ -84,6 +85,7 @@
         <a href="pro6.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Plomería</span></li></a>
         <a href="pro7.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Mat-Soldadura</span></li></a>
         <a href="pro8.php"><li style="padding: 7px;padding-left: 5px;"><img src="css/img/provider.png" alt="" class="list-nav"><span style="font-size: 18px;">Maq-Plom-Sold</span></li></a>
+     
       </ul>
     </div>
 
@@ -95,7 +97,7 @@
           </div>
 
           <div class="nav-logout">
-            <a href="login.php?close" class="btn-logout"><li>LOGOUT &nbsp; <img src="css/img/logout.png" alt="" class="list-nav"></li></a>
+            <a href="login.php?close" class="btn-logout"><li>CERRAR SESION &nbsp; <img src="css/img/logout.png" alt="" class="list-nav"></li></a>
           </div>
         </div>
       </div>
@@ -103,7 +105,9 @@
       <div class="content">
         <div class="menu-nav">
           <div class="col-md-3">
+
             <input type="text" name="userlook" id="itemlook" class="form-control" placeholder="Nombre Producto" />
+         
           </div>
           
           <div>
